@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(192, 192, 192);
+}
+
+h1 {
+    display: flex;
+    margin: 50 0 50 0;
+    justify-self: center;
+
+}
+
+button {
+    margin: 0 50 100 0;
+    display: inline-block;
+    justify-items: left;
+}
+
+#container {
+
+    width: 50vw;
+    height: 50vw;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    border-color: black;
+    border-width: thin;
+    border-style: dashed;
+    background-color: white;
+}

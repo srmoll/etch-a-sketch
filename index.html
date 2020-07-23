@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <title>Etch a Sketch</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <h1>Etch a Sketch</h1>
+  <button id="reset" class="btn">Reset</button>
+  <button id="resize" class="btn">Resize</button>
+
+  <div id="container"></div>
+
+  <script>
+
+    const divContainer = document.getElementById("container");
+
+    const resizeBtn = document.getElementById("resize");
+    const resetBtn = document.getElementById("reset");
+
+    resetBtn.addEventListener('click', clearGrid);
+    resizeBtn.addEventListener('click', resizeGrid);
+
+    function resizeGrid() {
+
+      let dimension = prompt("Enter the new n x n dimension for the grid. n < 100");
+      if (isNaN(dimension) || +dimension > 100 || +dimension < 1) {
+        alert("Valid input is a positive integer less than 100")
+        return;
+      }
+
+      let numChildrenDivs = divContainer.children.length;
+      let newDim = dimension**2;
+
+      if (newDim > numChildrenDivs) {
+        // Need to add this number of children divs 
+        newDim -= numChildrenDivs;
+        for (let i = 0; i < newDim; ++i) {
+          const divChild = document.createElement("div");
+          divChild.style.borderColor = "black";
+          divChild.style.borderStyle = "dashed";
+          divChild.style.borderWidth = "thin";
+          divChild.addEventListener('mouseover', addHoverProperty);
+          //divChild.setAttribute('class', 'cell');
+          divContainer.append(divChild);
+          
+        }
+      }
+      else if (newDim < numChildrenDivs) {
+        // Need to remove this number of children divs
+        newDim = numChildrenDivs - newDim;
+        for (let i = 0; i < newDim; ++i) {
+          const divChild = divContainer.firstChild;
+          divContainer.removeChild(divChild);
+        }
+      }
+
+      divContainer.style.gridTemplateColumns = `repeat(${dimension}, 1fr)`;
+      divContainer.style.gridTemplateRows = `repeat(${dimension}, 1fr)`
+      
+
+    }
+
+    function clearGrid() {
+      let divChildren = divContainer.children;
+      divContainer.style.backgroundColor = "white";
+      for (let i = 0; i < divChildren.length; ++i) {
+        divChildren[i].style.backgroundColor = "white";
+        divChildren[i].style.borderStyle = "none";
+      }
+    }
+    
+    function addHoverProperty(e) {
+      e.target.style.backgroundColor = "black";
+    }
+
+
+  </script>
+</body>
+</html>
