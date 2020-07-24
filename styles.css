@@ -1,18 +1,27 @@
 body {
-    background-color: rgb(192, 192, 192);
+    background-color: rgb(236, 193, 231);
+}
+
+#button-container {
+    display: block;
+    justify-content: center;
+    justify-items: center;
+    margin: 0 40vw 30px 40vw;
+    width: 50vw;
+    height: 100%;
+}
+
+button {
+    display: inline-block;
 }
 
 h1 {
     display: flex;
-    margin: 50 0 50 0;
     justify-self: center;
-
 }
 
 button {
-    margin: 0 50 100 0;
-    display: inline-block;
-    justify-items: left;
+    box-shadow: rgb(196, 4, 93);
 }
 
 #container {
@@ -20,11 +29,21 @@ button {
     width: 50vw;
     height: 50vw;
     display: grid;
-    justify-content: center;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
     border-color: black;
     border-width: thin;
     border-style: dashed;
     background-color: white;
+    margin: 0 auto 0 auto;
 }
+
+@media (max-width: 100vh) {
+    #container {
+        width: 50vw;
+        height: 50vw;
+    }
+    #button-container {
+        width: 50vw;
+    }
+} 

@@ -6,10 +6,11 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
-  <h1>Etch a Sketch</h1>
-  <button id="reset" class="btn">Reset</button>
-  <button id="resize" class="btn">Resize</button>
-
+  <div id="button-container">
+    <h1>Etch a Sketch</h1>
+    <button id="reset" class="btn">Reset</button>
+    <button id="resize" class="btn">Resize</button>
+  </div>
   <div id="container"></div>
 
   <script>
@@ -64,10 +65,10 @@
 
     function clearGrid() {
       let divChildren = divContainer.children;
-      divContainer.style.backgroundColor = "white";
+      //divContainer.style.backgroundColor = "white";
       for (let i = 0; i < divChildren.length; ++i) {
         divChildren[i].style.backgroundColor = "white";
-        divChildren[i].style.borderStyle = "none";
+        //divChildren[i].style.borderStyle = "none";
       }
     }
     
@@ -75,6 +76,21 @@
       e.target.style.backgroundColor = "black";
     }
 
+    function initializeGrid() {
+      const dimension = 16;
+      for (let i = 0; i < dimension**2; ++i) {
+        const divChild = document.createElement("div");
+        divChild.style.borderColor = "black";
+        divChild.style.borderStyle = "dashed";
+        divChild.style.borderWidth = "thin";
+        divChild.addEventListener('mouseover', addHoverProperty);
+        divContainer.append(divChild);        
+      }
+      divContainer.style.gridTemplateColumns = `repeat(${dimension}, 1fr)`;
+      divContainer.style.gridTemplateRows = `repeat(${dimension}, 1fr)`
+    }
+
+    initializeGrid();
 
   </script>
 </body>
